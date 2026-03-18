@@ -1,14 +1,14 @@
-from typing import Any, Optional
+from typing import Optional
 
 
 class Node:
-    def __init__(self, data: Any):
-        self.data: Any = data
-        self.next: Optional["Node"] = None
-        self.prev: Optional["Node"] = None
+    def __init__(self, title: str, artist: str, album: str):
+        self.data = {"title": title, "artist": artist, "album": album}
+        self.next = None
+        self.prev = None
 
     def __repr__(self):
-        title = self.data.get("title") if isinstance(self.data, dict) else self.data
+        title = self.data.get("title")
         return f"(DATA: {title} | NEXT: {self.next is not None})"
 
 
@@ -19,10 +19,7 @@ class LinkedList:
     def __repr__(self):
         nodes = ["START"]
         for node in self:
-            if isinstance(node.data, dict):
-                nodes.append(str(node.data.get("title")))
-            else:
-                nodes.append(str(node.data))
+            nodes.append(str(node.data.get("title")))
         nodes.append("NIL")
         return "\n" + " --> ".join(nodes)
 
